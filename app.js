@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const adminRoutes = require("./routes/admin");
+const adminData = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const path = require("path");
 
@@ -8,8 +8,14 @@ const app = express();
 // body-parser
 app.use(bodyParser.urlencoded({ extended: false }));
 // routes
-app.use(adminRoutes);
+app.use(adminData.routes);
 app.use(shopRoutes);
+// static  files
+app.use(express.static(path.join(__dirname, "public")));
+
+// pug config
+app.set("view engine", "pug");
+app.set("views", "views");
 
 app.listen(8000, () => {
   console.log("Server running on 8000");

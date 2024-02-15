@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title #{docTitle}
+        link(rel="stylesheet" href="/css/globals.css")
+    body 
+    header.header
+        nav
+            ul
+                li
+                    a(href="/") Shop 
+                li
+                    a(href="/add-product") Add Product     
+    main
+        h2 list of all the products
+        if (products.length>0)
+            each item in products
+                div.product-card  
+                    h2 #{item.product} 
+                    p #{item.qty}    
+        else 
+            p No Products

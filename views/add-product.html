@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>add-product</title>
+    <link rel="stylesheet" href="/css/globals.css" />
 </head>
 
 <body>
     <form action="/product" method="POST">
-        <input type="text" name="product" placeholder="enter product"><br />
-        <input type="number" name="qty" placeholder="enter quantity"><br />
-        <button type="submit">Add Product</button>
+        <div class="form-container">
+            <input type="text" name="product" class="input" placeholder="enter product"><br />
+            <input type="number" name="qty" class="input" placeholder="enter quantity"><br />
+            <button type="submit" class="button">Add Product</button>
+        </div>
     </form>
 </body>
 
