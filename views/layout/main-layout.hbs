@@ -12,10 +12,19 @@
       <nav>
         <ul>
           <li>
-            <a href="/" class="{{#if shopActive}}active{{/if}}">Shop</a>
+            <a href="/" class="{{#if indexActive}}active{{/if}}">Shop</a>
+          </li>
+           <li>
+            <a href="/products" class="{{#if productActive}}active{{/if}}">Products</a>
+          </li>
+             <li>
+            <a href="/cart" class="{{#if cartActive}}active{{/if}}">Cart</a>
           </li>
           <li>
             <a href="/admin/add-product" class="{{#if addProductActive}}active{{/if}}">Add Product</a>
+          </li>
+          <li>
+            <a href="/admin/products" class="{{#if adminProductActive}}active{{/if}}">Admin Products</a>
           </li>
         </ul>
       </nav>

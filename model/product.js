@@ -1,14 +1,58 @@
-const products = [];
+const fs = require("fs");
+const path = require("path");
 
 module.exports = class Products {
-  constructor(product, qty) {
-    this.product = product;
-    this.qty = qty;
+  
+  constructor(obj) {
+    this.obj = obj;
   }
+
   save() {
-    products.push({ product: this.product, qty: this.qty });
+    const p = path.join(
+      path.dirname(process.mainModule.filename),
+      "data",
+      "products.json"
+    );
+    fs.readFile(p, (err, fileContent) => {
+      if (err) {
+        console.error("Error reading file:", err);
+        return;
+      }
+   let products = [];
+      try {
+        products = JSON.parse(fileContent);
+      } catch (parseError) {
+        console.error("Error parsing JSON:", parseError);
+      }
+      products.push(this.obj);
+      fs.writeFile(p, JSON.stringify(products), (err) => {
+        if (err) {
+          console.error("Error writing file:", err);
+        }
+      });
+    });
   }
-  static fetchAll() {
-    return products;
+
+  static fetchAll(callback) {
+    const p = path.join(
+      path.dirname(process.mainModule.filename),
+      "data",
+      "products.json"
+    );
+    fs.readFile(p, (err, fileContent) => {
+      if (err) {
+        console.error("Error reading file:", err);
+        callback([]);
+        return;
+      }
+      let products = [];
+      try {
+        products = JSON.parse(fileContent);
+      } catch (parseError) {
+        console.error("Error parsing JSON:", parseError);
+      }
+      callback(products);
+    });
   }
+
 };
